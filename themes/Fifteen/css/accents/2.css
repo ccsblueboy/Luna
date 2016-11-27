@@ -36,6 +36,7 @@
 	background-color: #1a79bc;
 }
 
+.navbar-nav .open .dropdown-menu,
 .nav-tabs > li.active > a,
 .nav-tabs > li > a:hover,
 .nav-tabs > li.active > a:hover,
@@ -58,13 +59,7 @@ a.list-group-item.active:focus,
 .btn-primary.focus:active,
 .btn-primary.active.focus,
 .open > .dropdown-toggle.btn-primary.focus {
-	background-color: #136cab;
-}
-
-@media all and (min-width:768px) {
-	.dropdown-menu {
-		background-color: #136cab;
-	}
+	background-color: #136cab !important;
 }
 
 blockquote,

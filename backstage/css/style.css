@@ -359,11 +359,37 @@ blockquote footer {
 .navbar-default .navbar-toggle,
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-	border-color: transparent;
+	border: none;
+    box-shadow: none;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
 	background-color: #fff;
+}
+
+@media all and (max-width:767px) {
+    .navbar-toggle {
+        margin: 0;
+        padding: 18px 16px;
+        border: 0;
+        background-color: rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .navbar-nav {
+        margin: 0 -15px;
+    }
+    
+    .navbar-nav > li > a {
+        padding: 13px 15px;
+    }
+
+    .navbar-default .navbar-nav:not(.navbar-right) {
+        background-color: rgba(0,0,0,.1);
+    }
+    
+    .navbar-nav .open .dropdown-menu {
+        padding: 0;
+    }
 }
 
 .navbar-default .navbar-nav > .active > a,

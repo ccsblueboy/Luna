@@ -165,9 +165,7 @@ else
 					<ul class="dropdown-menu">
 						<li><a href="profile.php?id='.$luna_user['id'].'"><i class="fa fa-fw fa-user"></i> '.__( 'Profile', 'luna' ).'</a></li>
 						<li><a href="settings.php"><i class="fa fa-fw fa-cogs"></i> '.__( 'Settings', 'luna' ).'</a></li>
-						<li class="divider"></li>
 						<li><a href="help.php"><i class="fa fa-fw fa-info-circle"></i> '.__( 'Help', 'luna' ).'</a></li>
-						<li class="divider"></li>
 						<li><a href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_csrf_token().'"><i class="fa fa-fw fa-sign-out"></i> '.__( 'Logout', 'luna' ).'</a></li>
 					</ul>
 				</li>

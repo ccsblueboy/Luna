@@ -16,6 +16,7 @@ footer,
 	background-color: #ff5a21;
 }
 
+.navbar-nav .open .dropdown-menu,
 .title-primary,
 .title-sm.title-primary .input-group-addon,
 .panel-primary > .panel-heading,
@@ -33,12 +34,6 @@ footer,
 .navbar-default .navbar-nav > .open > a:focus,
 .navbar-default .navbar-nav > .open > a:hover {
 	background-color: #ff4021;
-}
-
-@media all and (min-width:768px) {
-	.dropdown-menu {
-		background-color: #ff4021;
-	}
 }
 
 .panel-default,
