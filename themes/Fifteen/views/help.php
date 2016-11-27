@@ -34,9 +34,9 @@ if (!defined('FORUM'))
 				<div role="tabpanel" class="tab-pane active" id="text">
 					<p><?php _e('The following tags change the appearance of text:', 'luna') ?></p>
 					<p><code>[b]<?php _e('Bold text', 'luna') ?>[/b]</code> <?php _e('produces', 'luna') ?> <strong><?php _e('Bold text', 'luna') ?></strong></p>
-					<p><code>[u]<?php _e('Underlined text', 'luna') ?>[/u]</code> <?php _e('produces', 'luna') ?> <span class="bbu"><?php _e('Underlined text', 'luna') ?></span></p>
+					<p><code>[u]<?php _e('Underlined text', 'luna') ?>[/u]</code> <?php _e('produces', 'luna') ?> <span class="underline"><?php _e('Underlined text', 'luna') ?></span></p>
 					<p><code>[i]<?php _e('Italic text', 'luna') ?>[/i]</code> <?php _e('produces', 'luna') ?> <em><?php _e('Italic text', 'luna') ?></em></p>
-					<p><code>[s]<?php _e('Strike-through text', 'luna') ?>[/s]</code> <?php _e('produces', 'luna') ?> <span class="bbs"><?php _e('Strike-through text', 'luna') ?></span></p>
+					<p><code>[s]<?php _e('Strike-through text', 'luna') ?>[/s]</code> <?php _e('produces', 'luna') ?> <span class="strikethrough"><?php _e('Strike-through text', 'luna') ?></span></p>
 					<p><code>[ins]<?php _e('Inserted text', 'luna') ?>[/ins]</code> <?php _e('produces', 'luna') ?> <ins><?php _e('Inserted text', 'luna') ?></ins></p>
 					<p><code>[color=#FF0000]<?php _e('Red text', 'luna') ?>[/color]</code> <?php _e('produces', 'luna') ?> <span style="color: #ff0000"><?php _e('Red text', 'luna') ?></span></p>
 					<p><code>[color=blue]<?php _e('Blue text', 'luna') ?>[/color]</code> <?php _e('produces', 'luna') ?> <span style="color: blue"><?php _e('Blue text', 'luna') ?></span></p>

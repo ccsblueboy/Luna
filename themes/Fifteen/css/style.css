@@ -1619,6 +1619,11 @@ footer .back-to-top {
 	color: blue;
 }
 
+.fa-ic-small {
+    font-size: 75%;
+    margin-left: -9px;
+}
+
 blockquote {
 	font-size: 14px;
     padding: 0 10px 4px 10px;

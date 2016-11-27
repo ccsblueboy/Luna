@@ -348,14 +348,14 @@ else
 										<?php if ($luna_config['o_allow_advanced_editor'] == '1'): ?>
 											<div class="checkbox">
 												<label>
-													<input type="checkbox" name="form[allow_advanced_editor]" value="1"<?php if ($user['allow_advanced_editor'] == '1') echo ' checked' ?> />
+													<input type="checkbox" name="form[advanced_editor]" value="1"<?php if ($user['advanced_editor'] == '1') echo ' checked' ?> />
 													<?php _e('Show a secondary toolbar with more options in the editor.', 'luna') ?>
 												</label>
 											</div>
 										<?php endif; if ($luna_config['o_allow_dialog_editor'] == '1'): ?>
 											<div class="checkbox">
 												<label>
-													<input type="checkbox" name="form[allow_dialog_editor]" value="1"<?php if ($user['allow_dialog_editor'] == '1') echo ' checked' ?> />
+													<input type="checkbox" name="form[dialog_editor]" value="1"<?php if ($user['dialog_editor'] == '1') echo ' checked' ?> />
 													<?php _e('Show dialogs for advanced BBCode-tags like URL.', 'luna') ?>
 												</label>
 											</div>

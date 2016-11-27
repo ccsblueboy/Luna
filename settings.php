@@ -555,7 +555,7 @@ To change your email address, please visit the following page:
 	redirect('settings.php?id='.$id);
 } else {
 
-	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_threads, u.disp_comments, u.use_inbox, u.email_setting, u.notify_with_comment, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.php_timezone, u.language, u.num_comments, u.last_comment, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.salt, u.first_run, u.enforce_accent, u.adapt_time, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_threads, u.disp_comments, u.use_inbox, u.email_setting, u.notify_with_comment, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.php_timezone, u.language, u.num_comments, u.last_comment, u.registered, u.advanced_editor, u.dialog_editor, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.salt, u.first_run, u.enforce_accent, u.adapt_time, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -620,6 +620,8 @@ To change your email address, please visit the following page:
 			'google'			=> luna_trim($_POST['form']['google']),
 			'color_scheme'		=> luna_trim($_POST['form']['color_scheme']),
 			'enforce_accent'	=> isset($_POST['form']['enforce_accent']) ? '1' : '0',
+			'advanced_editor'	=> isset($_POST['form']['advanced_editor']) ? '1' : '0',
+			'dialog_editor'	    => isset($_POST['form']['dialog_editor']) ? '1' : '0',
 			'adapt_time'		=> intval($_POST['form']['adapt_time']),
 			'accent'			=> luna_trim($_POST['form']['accent']),
 			'php_timezone'		=> luna_trim($_POST['form']['php_timezone']),
@@ -645,9 +647,7 @@ To change your email address, please visit the following page:
 			// We only allow administrators to update the comment count
 			if ($luna_user['g_id'] == LUNA_ADMIN)
 				$form['num_comments'] = intval($_POST['num_comments']);
-		}
-
-		if ($luna_user['is_admmod']) {
+            
 			// Are we allowed to change usernames?
 			if ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_rename_users'] == '1')) {
 				$form['username'] = luna_trim($_POST['req_username']);
