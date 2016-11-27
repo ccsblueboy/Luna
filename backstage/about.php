@@ -34,6 +34,7 @@ require 'header.php';
 						<ul class="changes">
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('You can now allow users to enable a secondary toolbar', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('You can now allow users to enable dialogs for advanced BBCode-tags', 'luna') ?></li>
+                            <li><div class="stater"><em class="state state-new"><?php _e('New', 'luna') ?></em></div><?php _e('Sunrise has a new thread design', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Luna now users a native font stack', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-improved"><?php _e('Improved', 'luna') ?></em></div><?php _e('Improved implementation for the spoiler-tag', 'luna') ?></li>
                             <li><div class="stater"><em class="state state-system"><?php _e('System', 'luna') ?></em></div><?php _e('Font Awesome and jQuery have been updated to the latest version', 'luna') ?></li>
