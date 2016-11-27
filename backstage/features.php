@@ -316,6 +316,24 @@ if (isset($_GET['saved']))
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label"><?php _e('Editor', 'luna') ?></label>
+                            <div class="col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[allow_advanced_editor]" value="1" <?php if ($luna_config['o_allow_advanced_editor'] == '1') echo ' checked' ?> />
+                                        <?php _e('Allow users to enable a second toolbar with more options in the editor.', 'luna') ?>
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="form[allow_dialog_editor]" value="1" <?php if ($luna_config['o_allow_dialog_editor'] == '1') echo ' checked' ?> />
+                                        <?php _e('Allow users to enable dialogs for advanced BBCode-tags like URL.', 'luna') ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
                             <label class="col-sm-3 control-label"><?php _e('Universal', 'luna') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox">

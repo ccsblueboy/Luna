@@ -38,7 +38,7 @@ else
 						<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-fw fa-user"></i><span class="hidden-sm hidden-xs"> <?php _e('Profile', 'luna') ?></span></a></li>
 						<li role="presentation"><a href="#appearance" aria-controls="appearance" role="tab" data-toggle="tab"><i class="fa fa-fw fa-paint-brush"></i><span class="hidden-sm hidden-xs"> <?php _e('Appearance', 'luna') ?></span></a></li>
 						<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"><i class="fa fa-fw fa-share-alt"></i><span class="hidden-sm hidden-xs"> <?php _e('Contact', 'luna') ?></span></a></li>
-						<li role="presentation"><a href="#thread" aria-controls="thread" role="tab" data-toggle="tab"><i class="fa fa-fw fa-list"></i><span class="hidden-sm hidden-xs"> <?php _e('Thread', 'luna') ?></span></a></li>
+						<li role="presentation"><a href="#thread" aria-controls="thread" role="tab" data-toggle="tab"><i class="fa fa-fw fa-list"></i><span class="hidden-sm hidden-xs"> <?php _e('Threads', 'luna') ?></span></a></li>
 						<li role="presentation"><a href="#time" aria-controls="time" role="tab" data-toggle="tab"><i class="fa fa-fw fa-clock-o"></i><span class="hidden-sm hidden-xs"> <?php _e('Time', 'luna') ?></span></a></li>
                         <?php if ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
                             <li role="presentation"><a href="#admin" aria-controls="admin" role="tab" data-toggle="tab"><i class="fa fa-fw fa-dashboard"></i><span class="hidden-sm hidden-xs"> <?php _e('Admin', 'luna') ?></span></a></li>
@@ -341,7 +341,28 @@ else
 					</div>
 					<div role="tabpanel" class="tab-pane" id="thread">
 						<fieldset class="form-horizontal form-setting">
-							<?php if ($luna_config['o_avatars'] == '1' || $luna_config['o_message_img_tag'] == '1'): ?>
+							<?php if ($luna_config['o_allow_advanced_editor'] == '1' || $luna_config['o_allow_dialog_editor'] == '1'): ?>
+								<div class="form-group">
+									<label class="col-sm-3 control-label"><?php _e('Editor', 'luna') ?></label>
+									<div class="col-sm-9">
+										<?php if ($luna_config['o_allow_advanced_editor'] == '1'): ?>
+											<div class="checkbox">
+												<label>
+													<input type="checkbox" name="form[allow_advanced_editor]" value="1"<?php if ($user['allow_advanced_editor'] == '1') echo ' checked' ?> />
+													<?php _e('Show a secondary toolbar with more options in the editor.', 'luna') ?>
+												</label>
+											</div>
+										<?php endif; if ($luna_config['o_allow_dialog_editor'] == '1'): ?>
+											<div class="checkbox">
+												<label>
+													<input type="checkbox" name="form[allow_dialog_editor]" value="1"<?php if ($user['allow_dialog_editor'] == '1') echo ' checked' ?> />
+													<?php _e('Show dialogs for advanced BBCode-tags like URL.', 'luna') ?>
+												</label>
+											</div>
+										<?php endif; ?>
+									</div>
+								</div>
+							<?php endif; if ($luna_config['o_avatars'] == '1' || $luna_config['o_message_img_tag'] == '1'): ?>
 								<div class="form-group">
 									<label class="col-sm-3 control-label"><?php _e('Comments', 'luna') ?></label>
 									<div class="col-sm-9">

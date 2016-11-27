@@ -711,6 +711,13 @@ switch ($stage) {
         
         $db->query('UPDATE '.$db->prefix.'groups SET g_moderator=1 WHERE g_id=1') or error('Unable to update group permissions for admins', __FILE__, __LINE__, $db->error());
         $db->alter_field('users', 'activate_string', 'VARCHAR(128)', true) or error('Unable to change activate_string type', __FILE__, __LINE__, $db->error());
+        
+        // Luna 2.1 upgrade support
+		$db->add_field('users', 'advanced_editor', 'TINYINT(1)', false, '1') or error('Unable to add advanced_editor field', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'dialog_editor', 'TINYINT(1)', false, '1') or error('Unable to add dialog_editor field', __FILE__, __LINE__, $db->error());
+        
+		build_config(1, 'o_allow_advanced_editor', '1');
+		build_config(1, 'o_allow_dialog_editor', '1');
 
 		break;
 
