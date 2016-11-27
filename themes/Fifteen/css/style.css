@@ -1316,11 +1316,11 @@ hr {
 	font-size: 30px;
 }
 
-.modal-form .modal-footer a {
+.modal-form .modal-footer a:not(.btn) {
 	color: #fff;
 }
 
-.modal-form .modal-footer a:hover {
+.modal-form .modal-footer a:not(.btn):hover {
 	color: #ccc;
 	text-decoration: none;
 }

@@ -14,11 +14,11 @@ $xmlstr = <<<XML
 <style engine="1.0">
 	<id>fifteen</id>
 	<name>Fifteen</name>
-	<developer>Studio 384</developer>
-	<date>23 November 2016</date>
-	<version>2.0.7</version>
+	<developer>studio384</developer>
+	<date>27 November 2016</date>
+	<version>2.1-alpha.1</version>
 	<minversion>2.0.0</minversion>
-	<maxversion>2.0.7</maxversion>
+	<maxversion>2.1-alpha.1</maxversion>
 </style>
 XML;
 ?>

@@ -80,6 +80,24 @@ function draw_editor($height, $meta_enabled = null) {
 		<label class="required hidden"><?php _e('Name', 'luna') ?></label><input class="info-textfield form-control" type="text" placeholder="<?php _e('Name', 'luna') ?>" name="req_username" maxlength="25" tabindex="<?php echo $cur_index++ ?>" autofocus />
 		<label class="conl<?php echo ($luna_config['o_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input class="info-textfield form-control" type="text" placeholder="<?php _e('Email', 'luna') ?>" name="<?php echo $email_form_name ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
 <?php } ?>
+<?php if ($luna_config['o_allow_dialog_editor'] == 1 && $luna_user['dialog_editor'] == 1): ?>
+<div class="modal fade modal-form" id="url-form" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-xs">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title"><?php _e('URL tag', 'luna') ?></h4>
+			</div>
+			<div class="modal-body">
+                <input class="form-control" type="text" id="url_url" name="url_url" maxlength="255" tabindex="901" placeholder="<?php _e('URL', 'luna') ?>" />
+                <input class="form-control" type="text" id="url_text" name="url_text" maxlength="255" tabindex="902" placeholder="<?php _e('Text', 'luna') ?>" />
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-default" href="javascript:void(0);" onclick="AddTag('advanced','url');" title="<?php _e('URL', 'luna'); ?>" tabindex="-1"><span class="fa fa-link fa-fw"></span> <?php _e('Add URL', 'luna'); ?></a>
+			</div>
+		</div>
+	</div>
+</div>
+<?php endif; ?>
 	<div class="btn-toolbar btn-toolbar-top">
 		<?php echo $pin_btn ?>
 		<?php echo $silence_btn ?>
@@ -100,7 +118,11 @@ function draw_editor($height, $meta_enabled = null) {
 			<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php _e('Inline code', 'luna'); ?>" tabindex="-1"><span class="fa fa-file-code-o fa-fw"></span></a>
 		</div>
 		<div class="btn-group">
+            <?php if ($luna_config['o_allow_dialog_editor'] == 1 && $luna_user['dialog_editor'] == 1) { ?>
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AdvancedTag('url');" title="<?php _e('URL', 'luna'); ?>" tabindex="-1"><span class="fa fa-link fa-fw"></span></a>
+            <?php } else { ?>
 			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','url');" title="<?php _e('URL', 'luna'); ?>" tabindex="-1"><span class="fa fa-link fa-fw"></span></a>
+            <?php } ?>
 			<a class="btn btn-default btn-editor hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php _e('Image', 'luna'); ?>" tabindex="-1"><span class="fa fa-image fa-fw"></span></a>
 			<a class="btn btn-default btn-editor hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php _e('Video', 'luna'); ?>" tabindex="-1"><span class="fa fa-play fa-fw"></span></a>
 		</div>
@@ -127,7 +149,6 @@ function draw_editor($height, $meta_enabled = null) {
     <?php if ($luna_config['o_allow_advanced_editor'] == '1' && $luna_user['advanced_editor'] == '1'): ?>
 	<div class="btn-toolbar btn-toolbar-top">
 		<div class="btn-group">
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','h');" title="<?php _e('Heading', 'luna'); ?>" tabindex="-1"><span class="fa fa-header fa-fw"></span></a>
 			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline+','color');" title="<?php _e('Color', 'luna'); ?>" tabindex="-1"><span class="fa fa-paint-brush fa-fw"></span></a>
             <?php if ($luna_config['o_allow_size'] == '1'): ?>
 			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline+','size');" title="<?php _e('Size', 'luna'); ?>" tabindex="-1"><span class="fa fa-font fa-fw"></span><span class="fa fa-font fa-ic-small"></span></a>
@@ -173,28 +194,52 @@ function draw_editor($height, $meta_enabled = null) {
 	</div>
 </div>
 <script>
+function AdvancedTag(tag) {
+    var Field = document.getElementById('comment_field');
+    var val = Field.value;
+    var selected_txt = val.substring(Field.selectionStart, Field.selectionEnd);
+    if (tag = 'url') {
+        $('#url_text').val(selected_txt);
+        $('#url-form').modal('toggle');
+        $('#url-form').modal('show');
+    }
+}
 function AddTag(type, tag) {
-   var Field = document.getElementById('comment_field');
-   var val = Field.value;
-   var selected_txt = val.substring(Field.selectionStart, Field.selectionEnd);
-   var before_txt = val.substring(0, Field.selectionStart);
-   var after_txt = val.substring(Field.selectionEnd, val.length);
-   if (type == 'inline')
-	   Field.value = before_txt + '[' + tag + ']' + selected_txt + '[/' + tag + ']' + after_txt;
-   else if (tag == 'color')
-	   Field.value = before_txt + '[color=red]' + selected_txt + '[/color]' + after_txt;
-   else if (tag == 'size')
-	   Field.value = before_txt + '[size=200]' + selected_txt + '[/size]' + after_txt;
-   else if (type == 'list')
-	   Field.value = before_txt + '[list]' + "\r" + '[*]' + selected_txt + '[/*]' + "\r" + '[/list]' + after_txt;
-   else if (type == 'code')
-	   Field.value = before_txt + '[code]' + "\r" + '[[language]]' + "\r" + selected_txt + "\r" + '[/code]' + after_txt;
-   else if (type == 'spoiler')
-	   Field.value = before_txt + '[spoiler]' + "\r" + selected_txt + "\r" + '[/spoiler]' + after_txt;
-   else if (type == 'emoji')
-	   Field.value = before_txt + ' ' + tag + ' ' + after_txt;
+    var Field = document.getElementById('comment_field');
+    var val = Field.value;
+    var selected_txt = val.substring(Field.selectionStart, Field.selectionEnd);
+    var before_txt = val.substring(0, Field.selectionStart);
+    var after_txt = val.substring(Field.selectionEnd, val.length);
+    if (type == 'inline')
+       Field.value = before_txt + '[' + tag + ']' + selected_txt + '[/' + tag + ']' + after_txt;
+    else if (type == 'advanced') {
+       if (tag == 'url') {
+           var url = $('#url_url').val();
+           var text = $('#url_text').val();
 
-	document.getElementById('comment_field').focus();
+           if ( text == '' ) {
+               Field.value = before_txt + '[url]' + url + '[/url]' + after_txt;
+           } else {
+               Field.value = before_txt + '[url=' + url + ']' + text + '[/url]' + after_txt;
+           }
+
+           $('#url-form').modal('hide');
+       }
+    }
+    else if (tag == 'color')
+       Field.value = before_txt + '[color=red]' + selected_txt + '[/color]' + after_txt;
+    else if (tag == 'size')
+       Field.value = before_txt + '[size=200]' + selected_txt + '[/size]' + after_txt;
+    else if (type == 'list')
+       Field.value = before_txt + '[list]' + "\r" + '[*]' + selected_txt + '[/*]' + "\r" + '[/list]' + after_txt;
+    else if (type == 'code')
+       Field.value = before_txt + '[code]' + "\r" + '[[language]]' + "\r" + selected_txt + "\r" + '[/code]' + after_txt;
+    else if (type == 'spoiler')
+       Field.value = before_txt + '[spoiler]' + "\r" + selected_txt + "\r" + '[/spoiler]' + after_txt;
+    else if (type == 'emoji')
+       Field.value = before_txt + ' ' + tag + ' ' + after_txt;
+
+    document.getElementById('comment_field').focus();
 }
 window.onbeforeunload = function() {
     if ( document.getElementById('comment_field').value ) {
