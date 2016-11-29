@@ -97,6 +97,22 @@ function draw_editor($height, $meta_enabled = null) {
 		</div>
 	</div>
 </div>
+<div class="modal fade modal-form" id="img-form" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-xs">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title"><?php _e('IMG tag', 'luna') ?></h4>
+			</div>
+			<div class="modal-body">
+                <input class="form-control" type="text" id="img_url" name="img_url" maxlength="255" tabindex="901" placeholder="<?php _e('URL', 'luna') ?>" />
+                <input class="form-control" type="text" id="img_text" name="img_text" maxlength="255" tabindex="902" placeholder="<?php _e('Text', 'luna') ?>" />
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-default" href="javascript:void(0);" onclick="AddTag('advanced','img');" title="<?php _e('IMG', 'luna'); ?>" tabindex="-1"><span class="fa fa-image fa-fw"></span> <?php _e('Add IMG', 'luna'); ?></a>
+			</div>
+		</div>
+	</div>
+</div>
 <?php endif; ?>
 	<div class="btn-toolbar btn-toolbar-top">
 		<?php echo $pin_btn ?>
@@ -120,10 +136,11 @@ function draw_editor($height, $meta_enabled = null) {
 		<div class="btn-group">
             <?php if ($luna_config['o_allow_dialog_editor'] == 1 && $luna_user['dialog_editor'] == 1) { ?>
 			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AdvancedTag('url');" title="<?php _e('URL', 'luna'); ?>" tabindex="-1"><span class="fa fa-link fa-fw"></span></a>
+			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AdvancedTag('img');" title="<?php _e('IMG', 'luna'); ?>" tabindex="-1"><span class="fa fa-image fa-fw"></span></a>
             <?php } else { ?>
 			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','url');" title="<?php _e('URL', 'luna'); ?>" tabindex="-1"><span class="fa fa-link fa-fw"></span></a>
-            <?php } ?>
 			<a class="btn btn-default btn-editor hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php _e('Image', 'luna'); ?>" tabindex="-1"><span class="fa fa-image fa-fw"></span></a>
+            <?php } ?>
 			<a class="btn btn-default btn-editor hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php _e('Video', 'luna'); ?>" tabindex="-1"><span class="fa fa-play fa-fw"></span></a>
 		</div>
 		<div class="btn-group">
@@ -198,10 +215,14 @@ function AdvancedTag(tag) {
     var Field = document.getElementById('comment_field');
     var val = Field.value;
     var selected_txt = val.substring(Field.selectionStart, Field.selectionEnd);
-    if (tag = 'url') {
+    if (tag == 'url') {
         $('#url_text').val(selected_txt);
         $('#url-form').modal('toggle');
         $('#url-form').modal('show');
+    } else if (tag == 'img') {
+        $('#img_text').val(selected_txt);
+        $('#img-form').modal('toggle');
+        $('#img-form').modal('show');
     }
 }
 function AddTag(type, tag) {
@@ -224,6 +245,22 @@ function AddTag(type, tag) {
            }
 
            $('#url-form').modal('hide');
+           $('#url_text').val();
+           $('#url_url').val();
+       }
+       if (tag == 'img') {
+           var url = $('#img_url').val();
+           var text = $('#img_text').val();
+
+           if ( text == '' ) {
+               Field.value = before_txt + '[img]' + url + '[/img]' + after_txt;
+           } else {
+               Field.value = before_txt + '[img=' + text + ']' + url + '[img]' + after_txt;
+           }
+
+           $('#img-form').modal('hide');
+           $('#img_text').val();
+           $('#img_url').val();
        }
     }
     else if (tag == 'color')
