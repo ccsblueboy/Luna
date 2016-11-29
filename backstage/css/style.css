@@ -15,7 +15,7 @@
 
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif !important;
-	background-color: #e8e8e8;
+	background-color: #f8f8f8;
 }
 
 body.ltr {
@@ -154,13 +154,12 @@ h6,
 .h4,
 .h5,
 .h6,
-.btn,
-.navbar {
+.btn {
 	font-weight: 300;
 }
 
-.navbar {
-	letter-spacing: .5px;
+.panel-title, .panel-title .btn {
+    font-weight: 500;
 }
 
 .modal h2,
@@ -345,9 +344,31 @@ blockquote footer {
     }
 }
 
+@media all and (min-width:768px) {
+    .navbar-brand {
+        padding: 20px 15px;
+        height: 60px;
+    }
+    
+    .navbar-nav > li > a {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    
+    .navbar .dropdown-user {
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+}
+
 .navbar-default .navbar-brand,
 .navbar-default .navbar-nav > li > a {
 	color: #fff;
+}
+
+.navbar-default .navbar-brand {
+    text-transform: uppercase;
+    font-weight: 300;
 }
 
 .navbar-default .navbar-toggle,
@@ -392,6 +413,13 @@ blockquote footer {
     }
 }
 
+.navbar-default .navbar-brand img {
+    max-height: 25px;
+    margin-top: -4px;
+    width: auto;
+    display: inline;
+}
+
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus,
@@ -420,6 +448,12 @@ blockquote footer {
 .navbar-nav .open .dropdown-menu > li > a,
 .navbar-nav .open .dropdown-menu .dropdown-header {
     padding: 10px 15px;
+}
+
+.secondary .nav-tabs > li > a:hover,
+.secondary .nav > li > a:hover,
+.secondary .nav > li > a:focus {
+    background-color: #f8f8f8;
 }
 	
 .dropdown-menu > li > a {
@@ -464,6 +498,7 @@ blockquote footer {
 	width: 40px;
 	height: 40px;
 	display: inline;
+    border-radius: 99px !important;
 }
 
 .navbar .dropdown-user {
@@ -574,12 +609,36 @@ blockquote footer {
 }
 
 .nav-tabs.nav-main {
-    padding-top: 10px;
+    padding-top: 0;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    border: none;
 }
 
 .nav-tabs > li > a {
 	color: #fff;
     margin-right: 0;
+    border: none;
+}
+
+.jumboheader.secondary {
+    padding-top: 5px;
+    padding-bottom: 0;
+    background: #e8e8e8;
+}
+
+.secondary .tab-content {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.primary .nav-tabs > li.active > a,
+.primary .nav-tabs > li.active > a:hover,
+.primary .nav-tabs > li.active > a:focus {
+    background-color: #e8e8e8;
 }
 
 .nav-tabs {
@@ -1649,8 +1708,9 @@ a.label-new {
     margin-bottom: 10px;
 }
 
-.installer .brand {
+.brand {
     font-weight: 600;
+    text-transform: uppercase;
 }
 
 .installer h1 {

@@ -1,5 +1,4 @@
 /* Accent 10 - Red */
-.navbar-default,
 .title-sm.title-primary,
 .panel-default .panel-heading,
 .panel-primary.panel-colored .panel-body,
@@ -11,6 +10,7 @@
 	background-color: #ff4444;
 }
 
+.navbar-default,
 footer,
 .jumboheader {
 	background-color: #e63838;
@@ -34,6 +34,18 @@ footer,
 .navbar-default .navbar-nav > .open > a:focus,
 .navbar-default .navbar-nav > .open > a:hover {
 	background-color: #d42f2f;
+}
+
+.primary .nav-tabs > li.active > a,
+.primary .nav-tabs > li.active > a:hover,
+.primary .nav-tabs > li.active > a:focus,
+.secondary .nav-tabs > li > a,
+.secondary .nav-tabs > li > a:hover,
+.secondary .nav-tabs > li > a:focus,
+.secondary .nav-tabs > li.active > a,
+.secondary .nav-tabs > li.active > a:hover,
+.secondary .nav-tabs > li.active > a:focus {
+	color: #d42f2f;
 }
 
 .panel-default,
