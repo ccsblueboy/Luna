@@ -15,7 +15,7 @@
 
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif !important;
-	background-color: #f8f8f8;
+	background-color: #eee;
 }
 
 body.ltr {
@@ -415,7 +415,7 @@ blockquote footer {
 
 .navbar-default .navbar-brand img {
     max-height: 25px;
-    margin-top: -4px;
+    margin-top: -5px;
     width: auto;
     display: inline;
 }
@@ -626,7 +626,7 @@ blockquote footer {
 .jumboheader.secondary {
     padding-top: 5px;
     padding-bottom: 0;
-    background: #e8e8e8;
+    background: #dedede;
 }
 
 .secondary .tab-content {
@@ -638,7 +638,7 @@ blockquote footer {
 .primary .nav-tabs > li.active > a,
 .primary .nav-tabs > li.active > a:hover,
 .primary .nav-tabs > li.active > a:focus {
-    background-color: #e8e8e8;
+    background-color: #dedede;
 }
 
 .nav-tabs {
