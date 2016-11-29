@@ -286,7 +286,7 @@ h6 {
 .title-block-nav .nav-tabs > .active > a:hover {
 	color: #1a79bc;
 	border: none;
-	background: #fff;
+	background: #fff !important;
 }
 
 /* Pagination */
