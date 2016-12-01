@@ -187,7 +187,7 @@ if ($install_file_exists) : ?>
             <div class="panel-heading">
                 <h3 class="panel-title"><?php _e('Statistics', 'luna') ?></h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body panel-stats">
                 <div class="row">
                     <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_comments'])) ?></b><br /><?php echo _n('comment', 'comments', $stats['total_comments'], 'luna') ?></h4>
                     <h4 class="text-center col-xs-4"><b><?php printf(forum_number_format($stats['total_threads'])) ?></b><br /><?php echo _n('thread', 'threads', $stats['total_threads'], 'luna') ?></h4>

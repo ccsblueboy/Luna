@@ -602,7 +602,7 @@ if ($db->num_rows($result) > 0) {
 ?>
 	<div class="col-lg-8">
 		<?php if ( $num_cats > 0 ) { ?>
-			<form class="panel panel-default panel-board form-horizontal" id="edforum" method="post" action="board.php?action=edit">
+			<form class="panel panel-default panel-board" id="edforum" method="post" action="board.php?action=edit">
 				<div class="panel-heading">
                     <h3 class="panel-title"><?php _e( 'Manage board', 'luna' ) ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update_board"><span class="fa fa-fw fa-check"></span> <?php _e( 'Save', 'luna' ) ?></button></span></h3>
 				</div>
@@ -617,17 +617,15 @@ if ($db->num_rows($result) > 0) {
 	$cur_category = 0;
 	while ( $cur_category = $db->fetch_assoc( $category ) ) {
 ?>
-					<div class="title">
-						<div class="title-md title-primary">
-                            <input type="text" class="form-control" name="cat[<?php echo $cur_category['id'] ?>][name]" placeholder="<?php _e('Category title', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_category['cat_name'] ) ?>" maxlength="80" />
-						</div>
-						<div class="title-sm title-primary">
-                            <div class="input-group">
-                                <span class="input-group-addon">Position</span>
-                                <input type="number" class="form-control" name="cat[<?php echo $cur_category['id'] ?>][position]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo $cur_category['disp_position'] ?>" />
-                            </div>
-						</div>
-					</div>
+                    <div class="title title-md title-primary title-next">
+                        <input type="text" class="form-control" name="cat[<?php echo $cur_category['id'] ?>][name]" placeholder="<?php _e('Category title', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_category['cat_name'] ) ?>" maxlength="80" />
+                    </div>
+                    <div class="title title-sm title-primary">
+                        <div class="input-group">
+                            <span class="input-group-addon">Position</span>
+                            <input type="number" class="form-control" name="cat[<?php echo $cur_category['id'] ?>][position]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo $cur_category['disp_position'] ?>" />
+                        </div>
+                    </div>
 <?php
 		$forum = $db->query( 'SELECT id, forum_name, disp_position, color, icon FROM '.$db->prefix.'forums WHERE cat_id = '.$cur_category['id'].' AND parent_id = \'\' ORDER BY disp_position, id' ) or error( 'Unable to fetch forums', __FILE__, __LINE__, $db->error() );
 	
@@ -647,21 +645,21 @@ if ($db->num_rows($result) > 0) {
                             </h3>
 						</div>
 						<div class="collapse" id="collapse<?php echo $cur_forum['id'] ?>">
-							<div class="panel-body">
+							<div class="panel-body form-horizontal">
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e( 'Name', 'luna' ) ?></label>
+									<label class="col-sm-3 control-label"><?php _e( 'Name', 'luna' ) ?></label>
 									<div class="col-sm-9">
                                         <input type="text" class="form-control" name="forum[<?php echo $cur_forum['id'] ?>][name]" placeholder="<?php _e('Name', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_forum['forum_name'] ) ?>" maxlength="80" />
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e( 'Position', 'luna' ) ?></label>
+									<label class="col-sm-3 control-label"><?php _e( 'Position', 'luna' ) ?></label>
 									<div class="col-sm-9">
                                         <input type="text" class="form-control" name="forum[<?php echo $cur_forum['id'] ?>][position]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo $cur_forum['disp_position'] ?>" maxlength="3" />
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e( 'Icon', 'luna' ) ?><span class="help-block"><?php echo '<a href="http://fortawesome.github.io/Font-Awesome/icons/">'.__( 'Font Awesome icon guide', 'luna' ).'</a>' ?></span></label>
+									<label class="col-sm-3 control-label"><?php _e( 'Icon', 'luna' ) ?><span class="help-block"><?php echo '<a href="http://fortawesome.github.io/Font-Awesome/icons/">'.__( 'Font Awesome icon guide', 'luna' ).'</a>' ?></span></label>
 									<div class="col-sm-9">
                                         <div class="input-group">
                                             <div class="input-group-addon">
@@ -672,7 +670,7 @@ if ($db->num_rows($result) > 0) {
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e( 'Forum color', 'luna' ) ?></label>
+									<label class="col-sm-3 control-label"><?php _e( 'Forum color', 'luna' ) ?></label>
 									<div class="col-sm-9">
 										<input class="color" name="forum[<?php echo $cur_forum['id'] ?>][color]" value="<?php echo $cur_forum['color'] ?>" />
 									</div>
@@ -704,19 +702,19 @@ if ($db->num_rows($result) > 0) {
 						<div class="collapse" id="collapse<?php echo $cur_subforum['id'] ?>">
 							<div class="panel-body">
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e( 'Name', 'luna' ) ?></label>
+									<label class="col-sm-3 control-label"><?php _e( 'Name', 'luna' ) ?></label>
 									<div class="col-sm-9">
                                         <input type="text" class="form-control" name="forum[<?php echo $cur_subforum['id'] ?>][name]" placeholder="<?php _e('Name', 'luna') ?>" value="<?php echo luna_htmlspecialchars( $cur_subforum['forum_name'] ) ?>" maxlength="80" />
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e( 'Position', 'luna' ) ?></label>
+									<label class="col-sm-3 control-label"><?php _e( 'Position', 'luna' ) ?></label>
 									<div class="col-sm-9">
                                         <input type="text" class="form-control" name="forum[<?php echo $cur_subforum['id'] ?>][position]" placeholder="<?php _e('Position', 'luna') ?>" value="<?php echo $cur_subforum['disp_position'] ?>" maxlength="3" />
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e( 'Icon', 'luna' ) ?><span class="help-block"><?php echo '<a href="http://fortawesome.github.io/Font-Awesome/icons/">'.__( 'Font Awesome icon guide', 'luna' ).'</a>' ?></span></label>
+									<label class="col-sm-3 control-label"><?php _e( 'Icon', 'luna' ) ?><span class="help-block"><?php echo '<a href="http://fortawesome.github.io/Font-Awesome/icons/">'.__( 'Font Awesome icon guide', 'luna' ).'</a>' ?></span></label>
 									<div class="col-sm-9">
                                         <div class="input-group">
                                             <div class="input-group-addon">
@@ -727,7 +725,7 @@ if ($db->num_rows($result) > 0) {
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-sm-3 form-control-label"><?php _e( 'Forum color', 'luna' ) ?></label>
+									<label class="col-sm-3 control-label"><?php _e( 'Forum color', 'luna' ) ?></label>
 									<div class="col-sm-9">
 										<input class="color" name="forum[<?php echo $cur_subforum['id'] ?>][color]" value="<?php echo $cur_subforum['color'] ?>" />
 									</div>
