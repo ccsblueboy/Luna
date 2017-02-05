@@ -1,0 +1,101 @@
+/*
+ * Copyright studio384 and Luna Group
+ * Based on Rubine 1.0
+ * Based on Bootstrap 3.3.7
+ * Since Luna 2.1-beta.1
+ */
+
+// Listgroup
+.list-group-luna.container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.list-group {
+	margin-bottom: 10px;
+}
+
+.list-group-item h4 {
+	margin: 0;
+}
+
+.list-group.list-group-luna .list-group-item {
+	border: none;
+	margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.list-group.list-group-luna .list-group-item .label {
+    font-size: 100%;
+    padding: .3em .45em .4em;
+    border-radius: 6px !important;
+}
+
+.list-group.list-group-luna .list-group-item.active {
+	color: #fff;
+	background-color: #1a79bc;
+}
+
+.list-group.list-group-luna .list-group-item:not(.active):hover {
+	background-color: #eee;
+}
+
+.list-group.list-group-forum .list-group-item {
+	padding-top: 9px;
+	padding-bottom: 10px;
+}
+
+.list-group.list-group-thread {
+	margin-top: 1px;
+}
+
+.list-group.list-group-thread .list-group-item {
+	background-color: #f9f9f9;
+	border: none;
+	border-left: 6px solid #efefef;
+    margin-bottom: 1px;
+}
+
+.list-group.list-group-thread .list-group-item.active {
+	background-color: #f3f3f3;
+	border-left: 6px solid #e8e8e8;
+}
+
+.list-group.list-group-thread .list-group-item.new-item {
+    background: #eee;
+}
+
+.list-group-transparent {
+    a.list-group-item {
+        color: #fff;
+        background: rgba(255, 255, 255, .2);
+        padding: 9px 15px;
+        border-color: transparent;
+        margin-bottom: 1px;
+        
+        &:focus,
+        &:hover,
+        &.active {
+            color: #fff;
+            background: rgba(255, 255, 255, .4);
+            border-color: transparent;
+        }
+        
+        &.list-group-item-danger {
+            &:focus,
+            &:hover {
+                background: rgba(255, 177, 178, .6);
+                border-color: transparent;
+            }
+        }
+    }
+}
+
+h5 {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.sidebar .list-group {
+	margin-bottom: 10px;
+}
