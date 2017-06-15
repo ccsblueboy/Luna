@@ -6,7 +6,7 @@ $xmlstr = <<<XML
 <!--
 
 /*
- * Copyright (C) 2014-2016 Studio 384
+ * Copyright (C) 2014-2017 Studio 384
  * Licensed under MIT
  */
 -->

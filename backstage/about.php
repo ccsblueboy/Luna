@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2016 Luna
+ * Copyright (C) 2013-2017 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv2 (http://getluna.org/license.php)
@@ -173,7 +173,7 @@ require 'header.php';
 				</section>
 			</div>
 			<div class="panel-footer">
-				<p><?php printf(__('Luna is developed by %s. Copyright %s. Released under the GPLv2 license.', 'luna'), '<a class="studio384" href="http://studio384.be/">studio384</a>', '2013-2016') ?></p>
+				<p><?php printf(__('Luna is developed by %s. Copyright %s. Released under the GPLv2 license.', 'luna'), '<a class="studio384" href="http://studio384.be/">studio384</a>', '2013-2017') ?></p>
 			</div>
 		</div>
 	</div>
