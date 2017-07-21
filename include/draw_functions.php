@@ -97,6 +97,22 @@ function draw_editor($height, $meta_enabled = null) {
 		</div>
 	</div>
 </div>
+<div class="modal fade modal-form" id="email-form" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-xs">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title"><?php _e('E-mail tag', 'luna') ?></h4>
+			</div>
+			<div class="modal-body">
+                <input class="form-control" type="text" id="email_email" name="email_email" maxlength="255" tabindex="901" placeholder="<?php _e('E-mail', 'luna') ?>" />
+                <input class="form-control" type="text" id="email_text" name="email_text" maxlength="255" tabindex="902" placeholder="<?php _e('Text', 'luna') ?>" />
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-default" href="javascript:void(0);" onclick="AddTag('advanced','email');" title="<?php _e('E-mail', 'luna'); ?>" tabindex="-1"><span class="fa fa-link fa-fw"></span> <?php _e('Add e-mail', 'luna'); ?></a>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="modal fade modal-form" id="img-form" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-xs">
 		<div class="modal-content">
@@ -174,9 +190,13 @@ function draw_editor($height, $meta_enabled = null) {
 		</div>
 		<div class="btn-group">
             <?php if ($luna_config['o_allow_center'] == '1'): ?>
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','center');" title="<?php _e('Center', 'luna'); ?>" tabindex="-1"><span class="fa fa-align-center fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','center');" title="<?php _e('Center', 'luna'); ?>" tabindex="-1"><span class="fa fa-align-center fa-fw"></span></a>
             <?php endif; ?>
-			<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','email');" title="<?php _e('Email', 'luna'); ?>" tabindex="-1"><span class="fa fa-envelope-o fa-fw"></span></a>
+            <?php if ($luna_config['o_allow_dialog_editor'] == 1 && $luna_user['dialog_editor'] == 1) { ?>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AdvancedTag(email');" title="<?php _e('Email', 'luna'); ?>" tabindex="-1"><span class="fa fa-envelope-o fa-fw"></span></a>
+            <?php } else { ?>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','email');" title="<?php _e('Email', 'luna'); ?>" tabindex="-1"><span class="fa fa-envelope-o fa-fw"></span></a>
+            <?php } ?>
 		</div>
         <?php if ($luna_config['o_allow_spoiler'] == '1'): ?>
 		<div class="btn-group">
@@ -223,6 +243,10 @@ function AdvancedTag(tag) {
         $('#img_text').val(selected_txt);
         $('#img-form').modal('toggle');
         $('#img-form').modal('show');
+    } else if (tag == 'img') {
+        $('#email_text').val(selected_txt);
+        $('#email-form').modal('toggle');
+        $('#email-form').modal('show');
     }
 }
 function AddTag(type, tag) {
@@ -261,6 +285,20 @@ function AddTag(type, tag) {
            $('#img-form').modal('hide');
            $('#img_text').val();
            $('#img_url').val();
+       }
+       if (tag == 'email') {
+           var email = $('#email_url').val();
+           var text = $('#email_text').val();
+
+           if ( text == '' ) {
+               Field.value = before_txt + '[email]' + email + '[/email]' + after_txt;
+           } else {
+               Field.value = before_txt + '[email=' + text + ']' + email + '[email]' + after_txt;
+           }
+
+           $('#email-form').modal('hide');
+           $('#email_text').val();
+           $('#email_url').val();
        }
     }
     else if (tag == 'color')
